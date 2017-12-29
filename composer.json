@@ -1,5 +1,5 @@
 {
-    "name": "yiisoft/yii2-app-basic",
+    "name": "ricpelo/yii2-app-basic",
     "description": "Yii 2 Basic Project Template",
     "keywords": ["yii2", "framework", "basic", "project template"],
     "homepage": "http://www.yiiframework.com/",
@@ -12,24 +12,33 @@
         "irc": "irc://irc.freenode.net/yii",
         "source": "https://github.com/yiisoft/yii2"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
-        "php": ">=5.6.0",
+        "php": "~7.1.0",
+        "ext-gd": "*",
+        "ext-intl": "*",
         "yiisoft/yii2": "~2.0.14",
         "yiisoft/yii2-bootstrap": "~2.0.0",
-        "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0"
+        "yiisoft/yii2-swiftmailer": "~2.1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
         "yiisoft/yii2-gii": "~2.1.0",
         "yiisoft/yii2-faker": "~2.0.0",
-        "codeception/codeception": "^4.0",
+        "yiisoft/yii2-shell": "dev-master",
+        "yiisoft/yii2-apidoc": "dev-master",
+
+        "codeception/codeception": "4.0.x-dev | ^4.0",
         "codeception/verify": "~0.5.0 || ~1.1.0",
         "codeception/specify": "~0.4.6",
         "symfony/browser-kit": ">=2.7 <=4.2.4",
         "codeception/module-filesystem": "^1.0.0",
         "codeception/module-yii2": "^1.0.0",
-        "codeception/module-asserts": "^1.0.0"
+        "codeception/module-asserts": "^1.0.0",
+        "squizlabs/php_codesniffer": "^2.0",
+        "yiisoft/yii2-coding-standards": "^2.0",
+        "friendsofphp/php-cs-fixer": "^2.8",
+        "phpoffice/phpexcel": "^1.8"
     },
     "config": {
         "process-timeout": 1800,
@@ -43,6 +52,7 @@
         ],
         "post-create-project-cmd": [
             "yii\\composer\\Installer::postCreateProject",
+            "[ -f setup.sh ] && ./setup.sh || true",
             "yii\\composer\\Installer::postInstall"
         ]
     },
@@ -66,6 +76,10 @@
         {
             "type": "composer",
             "url": "https://asset-packagist.org"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ricpelo/yii2-apidoc"
         }
     ]
 }
