@@ -12,6 +12,15 @@ modules:
     config:
         Yii2:
             configFile: 'config/test.php'
+    enabled:
+        - Db:
+            dsn: 'pgsql:host=localhost;dbname=proyecto_test'
+            user: 'proyecto'
+            password: 'proyecto'
+            dump: 'tests/_data/proyecto.sql'
+            populate: true # run populator before all tests
+            cleanup: true # run populator before each test
+            populator: 'psql -U $user -h $host -d $dbname < $dump'
 
 # To enable code coverage:
 #coverage:
