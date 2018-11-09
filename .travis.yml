@@ -1,6 +1,6 @@
 # Travis CI configuration file.
 
-dist: trusty
+dist: xenial
 
 
 # faster builds on new travis setup not using sudo
@@ -9,13 +9,13 @@ sudo: false
 language: php
 
 php:
-    - 7.2
+    - 7.1
 
 services:
     - postgresql
 
 addons:
-    postgresql: "9.6"
+    postgresql: 10
     chrome: stable
 
 before_install: phpenv config-rm xdebug.ini
