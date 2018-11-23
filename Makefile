@@ -25,7 +25,7 @@ fast:
 phpcs cs:
 	vendor/bin/phpcs
 
-docs:
+doc docs:
 	guia/publish-docs.sh
 
 api:
