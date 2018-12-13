@@ -20,12 +20,6 @@ addons:
 
 before_install: phpenv config-rm xdebug.ini
 
-services:
-  - mysql
-
-before_install:
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS yii2_basic_tests;'
-
 install:
     - composer install --no-interaction
 
