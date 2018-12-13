@@ -20,7 +20,7 @@ for p in "1: v1" "2: v2" "3: v3"
 do
     if ! echo $GHI | grep -qs "$p"
     then
-        echo "El hito (milestone) $p falta o está mal creado."
+        echo "El hito (milestone) '$p' falta o está mal creado."
         OK="0"
     fi
 done
