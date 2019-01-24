@@ -4,11 +4,14 @@ BASE_DIR=$(dirname $(readlink -f "$0"))
 
 api()
 {
+    OBJ_FILE="vendor/yiisoft/yii2/base/Object.php"
+    mv -f $OBJ_FILE $OBJ_FILE.viejo
     vendor/bin/apidoc api .,vendor/yiisoft/yii2 docs/api \
         --pageTitle="API del proyecto" --guide=.. --guidePrefix= \
         --exclude="docs,vendor,tests" --interactive=0 \
         --template="project" \
         --readmeUrl="file://$BASE_DIR/README-api.md"
+    mv -f $OBJ_FILE.viejo $OBJ_FILE
 }
 
 guide()
