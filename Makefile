@@ -2,8 +2,8 @@
 	fastcs fast phpcs docs api guia guide install psql
 
 help:      ## Muestra este mensaje de ayuda
-	@echo "Uso: make [comando]\n\nComandos:\n"
-	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
+	@echo "Uso: make [\033[36mcomando\033[0m]\n\nComandos:\n"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-10s\033[0m %s\n", $$1, $$2}'
 
 test:      ## Ejecuta todos los tests y pasa CodeSniffer
 tests:     ## Ídem
