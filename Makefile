@@ -1,10 +1,15 @@
-.PHONY: all test tests cs codecept pre_codecept post_codecept run_codecept \
+.PHONY: help test tests cs codecept pre_codecept post_codecept run_codecept \
 	fastcs fast phpcs docs api guia guide install psql
 
-all: test
+help:      ## Muestra este mensaje de ayuda
+	@echo "Uso: make [comando]\n\nComandos:\n"
+	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
+test:      ## Ejecuta todos los tests y pasa CodeSniffer
+tests:     ## Ídem
 test tests: codecept phpcs
 
+codecept:  ## Ejecuta los tests unitarios, funcionales y de aceptación
 codecept: pre_codecept run_codecept post_codecept
 
 pre_codecept:
@@ -16,30 +21,38 @@ post_codecept:
 run_codecept:
 	vendor/bin/codecept run
 
-fastcs: fast phpcs
+fastcs:    ## Ejecuta los tests unitarios y funcionales y pasa CodeSniffer
+fastcs: fast cs
 
+fast:      ## Ejecuta los tests unitarios y funcionales
 fast:
 	vendor/bin/codecept run unit
 	vendor/bin/codecept run functional
 
-phpcs cs:
+cs:        ## Pasa CodeSniffer
+phpcs:     ## Ídem
+cs phpcs:
 	vendor/bin/phpcs
 
+doc:       ## Genera toda la documentación (guía + API)
+docs:      ## Ídem
 doc docs:
 	guia/publish-docs.sh
 
-api:
+api:       ## Genera el API del proyecto
 	guia/publish-docs.sh -a
 
-guide guia:
+guia:      ## Genera la guía del proyecto
+guide:     ## Ídem
+guia guide:
 	guia/publish-docs.sh -g
 
-serve:
+serve:     ## Arranca el servidor web integrado
 	@[ -f .env ] && export $$(cat .env) ; ./yii serve
 
-install:
+install:   ## Ejecuta la post-instalación
 	composer install
 	composer run-script post-create-project-cmd
 
-psql:
+psql:      ## Arranca una consola SQL
 	db/psql.sh
