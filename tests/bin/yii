@@ -8,10 +8,15 @@
  * @license http://www.yiiframework.com/license/
  */
 
-defined('YII_DEBUG') or define('YII_DEBUG', true);
-defined('YII_ENV') or define('YII_ENV', 'test');
-
 require __DIR__ . '/../../vendor/autoload.php';
+
+if (file_exists($file = __DIR__ . '/../../.env')) {
+    (new \Symfony\Component\Dotenv\Dotenv())->load($file);
+}
+
+define('YII_ENV', getenv('YII_ENV') ?: 'test');
+define('YII_DEBUG', getenv('YII_DEBUG') ?: YII_ENV == 'test' || YII_ENV == 'dev');
+
 require __DIR__ . '/../../vendor/yiisoft/yii2/Yii.php';
 
 $config = yii\helpers\ArrayHelper::merge(
@@ -22,7 +27,6 @@ $config = yii\helpers\ArrayHelper::merge(
         ]
     ]
 );
-
 
 $application = new yii\console\Application($config);
 $exitCode = $application->run();
