@@ -9,10 +9,12 @@ require __DIR__ . '/../vendor/autoload.php';
 
 if (file_exists($file = __DIR__ . '/../.env.test')) {
     (new \Symfony\Component\Dotenv\Dotenv())->load($file);
+} elseif (file_exists($file = __DIR__ . '/../.env')) {
+    (new \Symfony\Component\Dotenv\Dotenv())->load($file);
 }
 
-defined('YII_DEBUG') or define('YII_DEBUG', true);
-defined('YII_ENV') or define('YII_ENV', 'test');
+define('YII_ENV', getenv('YII_ENV') ?: 'test');
+define('YII_DEBUG', getenv('YII_DEBUG') ?: YII_ENV == 'test' || YII_ENV == 'dev');
 
 require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
 

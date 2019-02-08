@@ -48,7 +48,7 @@ guia guide:
 	guia/publish-docs.sh -g
 
 serve:     ## Arranca el servidor web integrado
-	@[ -f .env ] && export $$(cat .env) ; ./yii serve
+	./yii serve
 
 install:   ## Ejecuta la post-instalación
 	composer install
