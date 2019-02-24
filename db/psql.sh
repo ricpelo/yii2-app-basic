@@ -1,3 +1,4 @@
 #!/bin/sh
 
-psql -h localhost -U proyecto -d proyecto
+[ "$1" = "test" ] && BD="_test"
+psql -h localhost -U proyecto -d proyecto$BD

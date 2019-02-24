@@ -54,5 +54,8 @@ install:   ## Ejecuta la post-instalación
 	composer install
 	composer run-script post-create-project-cmd
 
-psql:      ## Arranca una consola SQL
+psql:      ## Arranca una consola SQL en la BD principal
 	db/psql.sh
+
+psql_test: ## Arranca una consola SQL en la BD de pruebas
+	db/psql.sh test
