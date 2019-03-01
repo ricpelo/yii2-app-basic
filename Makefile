@@ -1,5 +1,6 @@
-.PHONY: help test tests cs codecept pre_codecept post_codecept run_codecept \
-	fastcs fast phpcs docs api guia guide install psql
+.PHONY: help test tests codecept pre_codecept post_codecept run_codecept \
+	fastcs fast disable_acceptance enable_acceptance cs phpcs doc docs \
+	api guia guide install psql
 
 help:      ## Muestra este mensaje de ayuda
 	@echo "Uso: make [\033[36mcomando\033[0m]\n\nComandos:\n"
@@ -19,15 +20,19 @@ post_codecept:
 	tests/run-acceptance.sh -d
 
 run_codecept:
-	vendor/bin/codecept run
+	vendor/bin/codecept run || true
 
 fastcs:    ## Ejecuta los tests unitarios y funcionales y pasa CodeSniffer
 fastcs: fast cs
 
 fast:      ## Ejecuta los tests unitarios y funcionales
-fast:
-	vendor/bin/codecept run unit
-	vendor/bin/codecept run functional
+fast: disable_acceptance run_codecept enable_acceptance
+
+disable_acceptance:
+	@if [ -f tests/acceptance.suite.yml ]; then mv -f tests/acceptance.suite.yml tests/acceptance.suite.yml.disabled; fi
+
+enable_acceptance:
+	@if [ -f tests/acceptance.suite.yml.disabled ]; then mv -f tests/acceptance.suite.yml.disabled tests/acceptance.suite.yml; fi
 
 cs:        ## Pasa CodeSniffer
 phpcs:     ## Ídem
@@ -39,10 +44,10 @@ docs:      ## Ídem
 doc docs:
 	guia/publish-docs.sh
 
-api:       ## Genera el API del proyecto
+api:       ## Genera sólo el API del proyecto
 	guia/publish-docs.sh -a
 
-guia:      ## Genera la guía del proyecto
+guia:      ## Genera sólo la guía del proyecto
 guide:     ## Ídem
 guia guide:
 	guia/publish-docs.sh -g
