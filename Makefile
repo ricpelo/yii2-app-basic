@@ -1,5 +1,4 @@
-.PHONY: help test tests codecept pre_codecept post_codecept run_codecept \
-	fastcs fast disable_acceptance enable_acceptance cs phpcs doc docs \
+.PHONY: help test tests codecept fastcs fast cs phpcs doc docs \
 	api guia guide install psql
 
 help:      ## Muestra este mensaje de ayuda
@@ -11,28 +10,17 @@ tests:     ## Ídem
 test tests: codecept phpcs
 
 codecept:  ## Ejecuta los tests unitarios, funcionales y de aceptación
-codecept: pre_codecept run_codecept post_codecept
-
-pre_codecept:
+codecept:
 	tests/run-acceptance.sh
-
-post_codecept:
-	tests/run-acceptance.sh -d
-
-run_codecept:
 	vendor/bin/codecept run || true
+	tests/run-acceptance.sh -d
 
 fastcs:    ## Ejecuta los tests unitarios y funcionales y pasa CodeSniffer
 fastcs: fast cs
 
 fast:      ## Ejecuta los tests unitarios y funcionales
-fast: disable_acceptance run_codecept enable_acceptance
-
-disable_acceptance:
-	@if [ -f tests/acceptance.suite.yml ]; then mv -f tests/acceptance.suite.yml tests/acceptance.suite.yml.disabled; fi
-
-enable_acceptance:
-	@if [ -f tests/acceptance.suite.yml.disabled ]; then mv -f tests/acceptance.suite.yml.disabled tests/acceptance.suite.yml; fi
+fast:
+	vendor/bin/codecept run unit,functional
 
 cs:        ## Pasa CodeSniffer
 phpcs:     ## Ídem
