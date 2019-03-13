@@ -11,9 +11,11 @@ test tests: codecept phpcs
 
 codecept:  ## Ejecuta los tests unitarios, funcionales y de aceptación
 codecept:
-	tests/run-acceptance.sh
+	@tests/bin/yii migrate/up --interactive=0
+	@db/load.sh test
+	@tests/run-acceptance.sh
 	vendor/bin/codecept run || true
-	tests/run-acceptance.sh -d
+	@tests/run-acceptance.sh -d
 
 fastcs:    ## Ejecuta los tests unitarios y funcionales y pasa CodeSniffer
 fastcs: fast cs
