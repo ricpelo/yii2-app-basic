@@ -3,7 +3,7 @@
 all: check req
 
 check:
-	./check-ghi.sh
+	@./check-ghi.sh
 
 req:
-	php requisitos.php -i
+	@php requisitos.php -i
