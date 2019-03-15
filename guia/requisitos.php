@@ -8,6 +8,7 @@ if (file_exists('vendor')) {
 }
 
 $issues = isset($argv[1]) && $argv[1] === '-i';
+$check = isset($argv[1]) && $argv[1] === '-c';
 
 if ($issues) {
     echo "\nSe ha indicado la opción '\033[1;28m-i\033[0m'. Se actualizarán las incidencias\n";
@@ -24,13 +25,63 @@ if ($issues) {
     }
 }
 
-echo "Leyendo archivo requisitos.xls...\n";
 \PhpOffice\PhpSpreadsheet\Settings::setLocale('es');
 $objPHPExcel = \PhpOffice\PhpSpreadsheet\IOFactory::load('requisitos.xls');
 $objWorksheet = $objPHPExcel->getSheet(0);
 $highestRow = $objWorksheet->getHighestDataRow(); // e.g. 10
 $highestColumn = $objWorksheet->getHighestDataColumn(); // e.g 'F'
 $highestColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($highestColumn); // e.g. 5
+
+$fallo = 0;
+
+echo "\033[1;28m# Comprobando archivo requisitos.xls...\033[0m\n";
+
+for ($row = 2; $row <= $highestRow; $row++) {
+    echo '(' . ($row - 1) . '/' . ($highestRow - 1) . ') ';
+    $codigo      = $objWorksheet->getCell("A$row")->getValue();
+    $corta       = $objWorksheet->getCell("B$row")->getValue();
+    $cortaMd     = $corta;
+    $corta       = preg_replace('/`/u', '\`', $corta);
+    $larga       = $objWorksheet->getCell("C$row")->getValue();
+    $largaMd     = preg_replace('/\n/u', ' ', $larga);
+    $larga       = preg_replace('/`/u', '\`', $larga);
+    $prioridad   = $objWorksheet->getCell("D$row")->getValue();
+    $tipo        = $objWorksheet->getCell("E$row")->getValue();
+    $complejidad = $objWorksheet->getCell("F$row")->getValue();
+    $entrega     = $objWorksheet->getCell("G$row")->getValue();
+    $incidencia  = $objWorksheet->getCell("H$row")->getValue();
+
+    if (!preg_match('/R[1-9]\d*/u', $codigo)) {
+        echo "\033[1;31m* Error: El código '$codigo' es incorrecto (celda A$row).\n  Debe empezar por R y seguir con un número que no empiece por 0.\033[0m\n";
+        $fallo = 1;
+    }
+    if (!in_array($prioridad, ['Mínimo', 'Importante', 'Opcional'])) {
+        echo "\033[1;31m* Error: La prioridad '$prioridad' es incorrecta (celda D$row).\033[0m\n";
+        $fallo = 1;
+    }
+    if (!in_array($tipo, ['Funcional', 'Técnico', 'Información'])) {
+        echo "\033[1;31m* Error: El tipo '$tipo' es incorrecto (celda E$row).\033[0m\n";
+        $fallo = 1;
+    }
+    if (!in_array($complejidad, ['Fácil', 'Media', 'Difícil'])) {
+        echo "\033[1;31m* Error: La complejidad '$complejidad' es incorrecta (celda F$row).\033[0m\n";
+        $fallo = 1;
+    }
+    if (!in_array($entrega, ['v1', 'v2', 'v3'])) {
+        echo "\033[1;31m* Error: La entrega '$entrega' es incorrecta (celda G$row).\033[0m\n";
+        $fallo = 1;
+    }
+}
+
+if ($fallo == 0) {
+    echo "\n\033[1;28m# No se han encontrado errores.\033[0m\n";
+    if ($check) {
+        exit(0);
+    }
+} else {
+    exit($fallo);
+}
+
 $requisitos = "\n# Catálogo de requisitos\n\n";
 $resumen = "\n## Cuadro resumen\n\n"
          . '| **Requisito** | **Prioridad** | **Tipo** | **Complejidad** | **Entrega** |'
@@ -45,14 +96,16 @@ if ($issues) {
     if (preg_match('%# ([^ ]+/[^ ]+)%', $salida, $matches) === 1) {
         $repo = $matches[1];
     } else {
-        echo "Error: no se puede identificar el repositorio de GitHub asociado.\n";
+        echo "\033[1;31m* Error: no se puede identificar el repositorio de GitHub asociado.\033[0m\n";
         exit(1);
     }
 }
 
+echo "\033[1;28m# Leyendo archivo requisitos.xls...\033[0m\n";
+
 for ($row = 2; $row <= $highestRow; $row++) {
     if ($issues && ($row - 1) % 10 === 0) {
-        echo 'Deteniendo la ejecución por 10 segundos para evitar exceso de tasa...';
+        echo '# Deteniendo la ejecución por 10 segundos para evitar exceso de tasa...';
         sleep(10);
         echo "\n";
     }
@@ -78,22 +131,10 @@ for ($row = 2; $row <= $highestRow; $row++) {
             $complejidadGhi = mb_strtolower($complejidad);
             $entregaGhi = mb_substr($entrega, 1, 1);
             $comando = "ghi open -m \"$mensaje\" --claim";
-            if (!empty($prioridadGhi)
-                && in_array($prioridadGhi, ['mínimo', 'importante', 'opcional'])) {
-                $comando .= " -L $prioridadGhi";
-            }
-            if (!empty($tipoGhi)
-                && in_array($tipoGhi, ['funcional', 'técnico', 'información'])) {
-                $comando .= " -L $tipoGhi";
-            }
-            if (!empty($complejidadGhi)
-                && in_array($complejidadGhi, ['fácil', 'media', 'difícil'])) {
-                $comando .= " -L $complejidadGhi";
-            }
-            if (!empty($entregaGhi)
-                && in_array($entregaGhi, ['1', '2', '3'])) {
-                $comando .= " -M $entregaGhi";
-            }
+            $comando .= " -L $prioridadGhi";
+            $comando .= " -L $tipoGhi";
+            $comando .= " -L $complejidadGhi";
+            $comando .= " -M $entregaGhi";
             echo "Generando incidencia para $codigo en GitHub...";
             $salida = `$comando`;
             $matches = [];
@@ -104,7 +145,7 @@ for ($row = 2; $row <= $highestRow; $row++) {
                 $objWorksheet->getCell("H$row")->getHyperlink()->setUrl($link);
                 echo " #$incidencia\n";
             } else {
-                echo "\nError: no se ha podido crear la incidencia en GitHub.\n";
+                echo "\n\033[1;31m* Error: no se ha podido crear la incidencia en GitHub.\033[0m\n";
                 $link = '';
             }
         } else {
@@ -127,11 +168,11 @@ for ($row = 2; $row <= $highestRow; $row++) {
               . ($issues ? " [$incidencia]($link) |" : '') . "\n";
 }
 
-echo "\nGenerando archivo requisitos.md...\n";
+echo "\n\033[1;28m# Generando archivo requisitos.md...\033[0m\n";
 file_put_contents('requisitos.md', $requisitos . $resumen, LOCK_EX);
 
 if ($issues) {
-    echo "Actualizando archivo requisitos.xls...\n";
+    echo "\033[1;28m# Actualizando archivo requisitos.xls...\033[0m\n";
     $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xls($objPHPExcel);
     $writer->save('requisitos.xls');
 }
