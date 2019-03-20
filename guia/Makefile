@@ -1,9 +1,4 @@
-.PHONY: all check req
+.PHONY: all
 
-all: check req
-
-check:
-	@./check-ghi.sh
-
-req:
-	@php requisitos.php -i
+all:
+	php requisitos.php -i
