@@ -1,6 +1,6 @@
 #!/bin/sh
 
-BASE_DIR=$(dirname $(readlink -f "$0"))
+BASE_DIR=$(dirname "$(readlink -f "$0")")
 ACTUAL=$PWD
 cd $BASE_DIR/..
 $BASE_DIR/download-chromedriver.sh -q

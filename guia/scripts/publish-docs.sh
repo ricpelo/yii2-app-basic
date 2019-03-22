@@ -1,6 +1,6 @@
 #!/bin/sh
 
-BASE_DIR=$(dirname $(readlink -f "$0"))
+BASE_DIR=$(dirname "$(readlink -f "$0")")
 
 api()
 {
@@ -25,7 +25,7 @@ guide()
 }
 
 ACTUAL=$PWD
-cd $BASE_DIR/..
+cd $BASE_DIR/../..
 
 if [ "$1" = "-a" ]
 then
