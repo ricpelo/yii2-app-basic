@@ -32,15 +32,15 @@ cs phpcs:
 doc:       ## Genera toda la documentación (guía + API)
 docs:      ## Ídem
 doc docs:
-	guia/publish-docs.sh
+	guia/scripts/publish-docs.sh
 
 api:       ## Genera sólo el API del proyecto
-	guia/publish-docs.sh -a
+	guia/scripts/publish-docs.sh -a
 
 guia:      ## Genera sólo la guía del proyecto
 guide:     ## Ídem
 guia guide:
-	guia/publish-docs.sh -g
+	guia/scripts/publish-docs.sh -g
 
 serve:     ## Arranca el servidor web integrado
 	./yii serve
@@ -54,3 +54,6 @@ psql:      ## Arranca una consola SQL en la BD principal
 
 psql_test: ## Arranca una consola SQL en la BD de pruebas
 	db/psql.sh test
+
+issues:    ## Actualiza incidencias en GitHub
+	cd guia && make
