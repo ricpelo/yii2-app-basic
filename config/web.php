@@ -60,6 +60,11 @@ $config = [
         ],
         */
     ],
+    'container' => [
+        'definitions' => [
+            'yii\grid\ActionColumn' => ['header' => 'Acciones'],
+        ],
+    ],
     'params' => $params,
 ];
 
