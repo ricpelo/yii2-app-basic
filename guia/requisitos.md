@@ -174,7 +174,7 @@
 
 | **R20**     | **ECMAScript2015 (ES6)**         |
 | --------------: | :------------------- |
-| **Descripción** | Uso de las nuevas incorporaciones del estándar ECMAScript2015 (ES6)             |
+| **Descripción** | Uso de las nuevas incorporaciones del estándar ECMAScript2015 (ES6).             |
 | **Prioridad**   | Mínimo           |
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
@@ -183,7 +183,7 @@
 
 | **R21**     | **PHP**         |
 | --------------: | :------------------- |
-| **Descripción** | Usar PHP 7.1 ó superior.             |
+| **Descripción** | Usar PHP 7.3 ó superior.             |
 | **Prioridad**   | Mínimo           |
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
@@ -192,7 +192,7 @@
 
 | **R22**     | **Yii2 Framework**         |
 | --------------: | :------------------- |
-| **Descripción** | Usar Yii2 Framework versión 2.0.10 ó superior.             |
+| **Descripción** | Usar Yii2 Framework versión 2.0.29 ó superior.             |
 | **Prioridad**   | Mínimo           |
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
@@ -201,7 +201,7 @@
 
 | **R23**     | **PostgreSQL**         |
 | --------------: | :------------------- |
-| **Descripción** | Usar PostgreSQL versión 9.6 ó superior.             |
+| **Descripción** | Usar PostgreSQL versión 12 ó superior.             |
 | **Prioridad**   | Mínimo           |
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
@@ -348,41 +348,41 @@
 
 | **Requisito** | **Prioridad** | **Tipo** | **Complejidad** | **Entrega** |
 | :------------ | :-----------: | :------: | :-------------: | :---------: |
-| (**R1**) Requisitos como incidencias | Mínimo | Técnico | Fácil | v1 |
-| (**R2**) Código fuente | Mínimo | Técnico | Fácil | v1 |
-| (**R3**) Estilo del código | Mínimo | Técnico | Fácil | v1 |
-| (**R4**) Tres lanzamientos | Mínimo | Técnico | Fácil | v1 |
-| (**R5**) README.md | Mínimo | Técnico | Fácil | v1 |
-| (**R6**) Documentación | Mínimo | Técnico | Fácil | v1 |
-| (**R7**) Incidencias en GitHub | Mínimo | Técnico | Fácil | v1 |
-| (**R8**) Etiquetas e hitos | Mínimo | Técnico | Fácil | v1 |
-| (**R9**) Rama master | Mínimo | Técnico | Fácil | v1 |
-| (**R10**) Gestión del proyecto | Mínimo | Técnico | Fácil | v1 |
-| (**R11**) Final de cada iteración | Mínimo | Técnico | Fácil | v1 |
-| (**R12**) Validación de formularios | Mínimo | Técnico | Fácil | v1 |
-| (**R13**) Gestión de ventanas | Mínimo | Técnico | Fácil | v1 |
-| (**R14**) Manejo de eventos | Mínimo | Técnico | Fácil | v1 |
-| (**R15**) DOM | Mínimo | Técnico | Fácil | v1 |
-| (**R16**) Almacenamiento en el lado del cliente | Mínimo | Técnico | Fácil | v1 |
-| (**R17**) jQuery, jQuery UI | Mínimo | Técnico | Fácil | v1 |
-| (**R18**) Plugin no trabajado en clase | Mínimo | Técnico | Fácil | v1 |
-| (**R19**) Utilización de AJAX | Mínimo | Técnico | Fácil | v1 |
-| (**R20**) ECMAScript2015 (ES6) | Mínimo | Técnico | Fácil | v1 |
-| (**R21**) PHP | Mínimo | Técnico | Fácil | v1 |
-| (**R22**) Yii2 Framework | Mínimo | Técnico | Fácil | v1 |
-| (**R23**) PostgreSQL | Mínimo | Técnico | Fácil | v1 |
-| (**R24**) Heroku | Mínimo | Técnico | Fácil | v1 |
-| (**R25**) Codeception | Mínimo | Técnico | Fácil | v1 |
-| (**R26**) Code Climate | Mínimo | Técnico | Fácil | v1 |
-| (**R27**) Aplicación escalable | Mínimo | Técnico | Fácil | v1 |
-| (**R28**) Tecnología AJAX | Mínimo | Técnico | Fácil | v1 |
-| (**R29**) Etiquetas semánticas de HTML5 | Mínimo | Técnico | Fácil | v1 |
-| (**R30**) Presentación mediante CSS | Mínimo | Técnico | Fácil | v1 |
-| (**R31**) Diseño flexible | Mínimo | Técnico | Fácil | v1 |
-| (**R32**) Transiciones, transformaciones, animaciones y contenido multimedia | Mínimo | Técnico | Fácil | v1 |
-| (**R33**) Uso de microdatos | Mínimo | Técnico | Fácil | v1 |
-| (**R34**) Validación HTML5, CSS3 y accesibilidad | Mínimo | Técnico | Fácil | v1 |
-| (**R35**) Diseño para varias resoluciones | Mínimo | Técnico | Fácil | v1 |
-| (**R36**) Varios navegadores | Mínimo | Técnico | Fácil | v1 |
-| (**R37**) Despliegue en un Host | Mínimo | Técnico | Fácil | v1 |
-| (**R38**) Despliegue en un servidor local | Mínimo | Técnico | Fácil | v1 |
+| (**R1**) Requisitos como incidencias | Mínimo | Técnico | Fácil | v1 | 
+| (**R2**) Código fuente | Mínimo | Técnico | Fácil | v1 | 
+| (**R3**) Estilo del código | Mínimo | Técnico | Fácil | v1 | 
+| (**R4**) Tres lanzamientos | Mínimo | Técnico | Fácil | v1 | 
+| (**R5**) README.md | Mínimo | Técnico | Fácil | v1 | 
+| (**R6**) Documentación | Mínimo | Técnico | Fácil | v1 | 
+| (**R7**) Incidencias en GitHub | Mínimo | Técnico | Fácil | v1 | 
+| (**R8**) Etiquetas e hitos | Mínimo | Técnico | Fácil | v1 | 
+| (**R9**) Rama master | Mínimo | Técnico | Fácil | v1 | 
+| (**R10**) Gestión del proyecto | Mínimo | Técnico | Fácil | v1 | 
+| (**R11**) Final de cada iteración | Mínimo | Técnico | Fácil | v1 | 
+| (**R12**) Validación de formularios | Mínimo | Técnico | Fácil | v1 | 
+| (**R13**) Gestión de ventanas | Mínimo | Técnico | Fácil | v1 | 
+| (**R14**) Manejo de eventos | Mínimo | Técnico | Fácil | v1 | 
+| (**R15**) DOM | Mínimo | Técnico | Fácil | v1 | 
+| (**R16**) Almacenamiento en el lado del cliente | Mínimo | Técnico | Fácil | v1 | 
+| (**R17**) jQuery, jQuery UI | Mínimo | Técnico | Fácil | v1 | 
+| (**R18**) Plugin no trabajado en clase | Mínimo | Técnico | Fácil | v1 | 
+| (**R19**) Utilización de AJAX | Mínimo | Técnico | Fácil | v1 | 
+| (**R20**) ECMAScript2015 (ES6) | Mínimo | Técnico | Fácil | v1 | 
+| (**R21**) PHP | Mínimo | Técnico | Fácil | v1 | 
+| (**R22**) Yii2 Framework | Mínimo | Técnico | Fácil | v1 | 
+| (**R23**) PostgreSQL | Mínimo | Técnico | Fácil | v1 | 
+| (**R24**) Heroku | Mínimo | Técnico | Fácil | v1 | 
+| (**R25**) Codeception | Mínimo | Técnico | Fácil | v1 | 
+| (**R26**) Code Climate | Mínimo | Técnico | Fácil | v1 | 
+| (**R27**) Aplicación escalable | Mínimo | Técnico | Fácil | v1 | 
+| (**R28**) Tecnología AJAX | Mínimo | Técnico | Fácil | v1 | 
+| (**R29**) Etiquetas semánticas de HTML5 | Mínimo | Técnico | Fácil | v1 | 
+| (**R30**) Presentación mediante CSS | Mínimo | Técnico | Fácil | v1 | 
+| (**R31**) Diseño flexible | Mínimo | Técnico | Fácil | v1 | 
+| (**R32**) Transiciones, transformaciones, animaciones y contenido multimedia | Mínimo | Técnico | Fácil | v1 | 
+| (**R33**) Uso de microdatos | Mínimo | Técnico | Fácil | v1 | 
+| (**R34**) Validación HTML5, CSS3 y accesibilidad | Mínimo | Técnico | Fácil | v1 | 
+| (**R35**) Diseño para varias resoluciones | Mínimo | Técnico | Fácil | v1 | 
+| (**R36**) Varios navegadores | Mínimo | Técnico | Fácil | v1 | 
+| (**R37**) Despliegue en un Host | Mínimo | Técnico | Fácil | v1 | 
+| (**R38**) Despliegue en un servidor local | Mínimo | Técnico | Fácil | v1 | 
