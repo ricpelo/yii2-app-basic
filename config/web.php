@@ -63,6 +63,7 @@ $config = [
     'container' => [
         'definitions' => [
             'yii\grid\ActionColumn' => ['header' => 'Acciones'],
+            'yii\widgets\LinkPager' => 'yii\bootstrap4\LinkPager',
         ],
     ],
     'params' => $params,
