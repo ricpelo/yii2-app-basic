@@ -64,6 +64,8 @@ $config = [
         'definitions' => [
             'yii\grid\ActionColumn' => ['header' => 'Acciones'],
             'yii\widgets\LinkPager' => 'yii\bootstrap4\LinkPager',
+            'yii\grid\DataColumn' => 'app\widgets\DataColumn',
+            'yii\grid\GridView' => ['filterErrorOptions' => ['class' => 'invalid-feedback']],
         ],
     ],
     'params' => $params,
