@@ -25,8 +25,8 @@ install:
 
 before_script:
     - db/create.sh travis
-    - tests/bin/yii migrate/up --interactive=0
     - db/load.sh test
+    - tests/bin/yii migrate/up --interactive=0
     - tests/download-chromedriver.sh
     - tests/run-acceptance.sh
     - sleep 3
