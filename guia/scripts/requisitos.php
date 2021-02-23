@@ -98,7 +98,8 @@ if ($issues) {
     try {
         $client = new \Github\Client();
         $client->authenticate(getenv('GITHUB_TOKEN'), null, \Github\Client::AUTH_HTTP_TOKEN);
-        $login = $client->currentUser()->show()['login'];
+        // $login = $client->currentUser()->show()['login'];
+        $login = trim(`git remote get-url origin | cut -d/ -f4`);
         $repo = trim(`basename -s .git $(git remote get-url origin)`);
     } catch (\Github\Exception\RuntimeException $e) {
         fallo('No se ha podido encontrar el repositorio en GitHub.');
@@ -133,7 +134,7 @@ if ($issues) {
             break;
         default:
             foreach ($columns as $col) {
-                if ($col['name'] === 'To Do') {
+                if ($col['name'] === 'To do') {
                     $column = $col;
                     break;
                 }
@@ -141,7 +142,7 @@ if ($issues) {
             if (isset($column)) {
                 echo "# Usando columnas ya existentes en el proyecto...\n";
             } else {
-                fallo("El proyecto existente no es válido (no tiene una columna 'To Do').\n  Elimínalo en https://github.com/$login/$repo/projects\n  o crea otro con la plantilla 'Automated kanban'.");
+                fallo("El proyecto existente no es válido (no tiene una columna 'To do').\n  Elimínalo en https://github.com/$login/$repo/projects\n  o crea otro con la plantilla 'Automated kanban'.");
                 exit(1);
             }
             break;
