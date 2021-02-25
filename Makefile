@@ -11,6 +11,7 @@ test tests: codecept phpcs
 
 codecept:  ## Ejecuta los tests unitarios, funcionales y de aceptación
 codecept:
+	@db/create.sh test
 	@db/load.sh test
 	@tests/bin/yii migrate/up --interactive=0
 	@tests/run-acceptance.sh

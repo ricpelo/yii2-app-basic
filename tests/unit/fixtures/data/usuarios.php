@@ -3,7 +3,7 @@
 return [
     [
         'nombre' => 'vaca.roberto',
-        'password' => '$2y$13$AbFTOYb9VlhAT9B5HsTIh.EyojYnHPlXkJBB/ifYg6F/sHa/9SvKS',
+        'password' => '$2y$13$Bj8jL1vO0JYbh3xmZBEOK.T/dVuF4ET4VuJcpsoeRxl5mFgzRwmOS',
         'auth_key' => 'SuZOf8aEastmBX_AQyWNsvAeFqgwoTDY',
         'telefono' => '980-018583',
         'poblacion' => 'A Alfaro',
