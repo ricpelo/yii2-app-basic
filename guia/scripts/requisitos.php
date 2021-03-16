@@ -128,7 +128,7 @@ if ($issues) {
     switch (count($columns)) {
         case 0:
             echo "# Creando columnas en el proyecto...\n";
-            $column = $client->api('repo')->projects()->columns()->configure()->create($project['id'], ['name' => 'To Do']);
+            $column = $client->api('repo')->projects()->columns()->configure()->create($project['id'], ['name' => 'To do']);
             $client->api('repo')->projects()->columns()->configure()->create($project['id'], ['name' => 'In Progress']);
             $client->api('repo')->projects()->columns()->configure()->create($project['id'], ['name' => 'Done']);
             break;
@@ -233,7 +233,7 @@ for ($row = 2, $i = 1; $row <= $highestRow; $row++) {
                 'projects' => "$login/$repo/{$project['number']}",
             ]);
             $incidencia = $issue['number'];
-            $link = "https://github.com/$repo/issues/$incidencia";
+            $link = "https://github.com/$login/$repo/issues/$incidencia";
             $objWorksheet->setCellValue("H$row", $incidencia);
             $objWorksheet->getCell("H$row")->getHyperlink()->setUrl($link);
             $client->api('repo')->projects()->columns()->cards()->configure()->create($column['id'], ['content_type' => 'Issue', 'content_id' => $issue['id']]);
